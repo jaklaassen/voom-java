@@ -47,8 +47,9 @@ public class LivefyreJsonMessageCodec<T> extends MessageCodec<JSONArray, T> {
             container.put(encodePart(part));
         }
         
+        // Ensure the proper encoding here. See LF-7124.
         StringWriter sw = new StringWriter();
-        return container.write(sw).toString().getBytes();
+        return container.write(sw).toString().getBytes("UTF-8");
     }
     
     @Override
